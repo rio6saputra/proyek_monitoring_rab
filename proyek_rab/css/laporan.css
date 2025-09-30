@@ -1,0 +1,205 @@
+/* proyek_rab/css/laporan.css */
+
+/* Gaya untuk halaman laporan */
+.summary-cards-container {
+    display: grid;
+    /* Membuat 3 kolom di layar besar, dan 1 kolom di layar kecil */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.summary-card .title {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.summary-card .value {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Warna khusus untuk kartu 'Menunggu Verifikasi' */
+.summary-card.warning .value {
+    color: #f57f17; /* Oranye */
+}
+
+/* Grid layout untuk filter container di halaman laporan */
+.filter-grid {
+    display: grid;
+    /* Membuat 2 kolom di layar besar, dan 1 kolom di layar kecil */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    align-items: end; /* Menyejajarkan tombol dengan form select */
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-item label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.filter-item select, .filter-item button {
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    font-size: 1em;
+}
+
+/* Menyamakan tinggi tombol dengan select box */
+.filter-item.action-item button {
+    height: 42px;
+}
+
+/* Wrapper untuk kontrol tabel (pencarian, dll.) */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.table-controls .search-wrapper input {
+    width: 300px;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 0.9em;
+}
+
+/* Container untuk tombol paginasi */
+.pagination-wrapper {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.pagination-wrapper button {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.pagination-wrapper button:hover {
+    background-color: #f0f4f8;
+}
+
+.pagination-wrapper button.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.pagination-wrapper button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Tabel Laporan */
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.report-table th, .report-table td {
+    border: 1px solid var(--border-color);
+    padding: 10px 12px;
+    text-align: left;
+}
+
+.report-table thead {
+    background-color: #f7f9fc;
+}
+
+.report-table th {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+/* Style untuk header yang bisa diurutkan (sortable) */
+.report-table th.sortable {
+    cursor: pointer;
+    position: relative;
+    padding-right: 25px; /* Ruang untuk ikon panah */
+}
+
+.report-table th.sortable::after {
+    content: '↕'; /* Ikon panah default */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+.report-table th.sorted-asc::after {
+    content: '↑'; /* Ikon panah naik */
+    color: var(--primary-color);
+}
+
+.report-table th.sorted-desc::after {
+    content: '↓'; /* Ikon panah turun */
+    color: var(--primary-color);
+}
+/* =============================================== */
+/* --- Tambahan untuk Pemisah Kolom Laporan --- */
+/* =============================================== */
+
+/* Memberi warna latar pada semua kolom revisi untuk membuat "zona" */
+.rev-col {
+    background-color: #f8f9fa; /* Warna abu-abu sangat terang */
+}
+
+/* Memberi jarak di kolom terakhir sebelum revisi */
+.last-original-col {
+    padding-right: 20px !important;
+}
+
+/* Memberi jarak dan garis tipis di kolom pertama revisi */
+.first-rev-col {
+    padding-left: 20px !important;
+    border-left: 1px solid #dee2e6; /* Garis pemisah vertikal tipis */
+}
+
+/* Custom CSS: Tambahkan garis pemisah antara kolom Jumlah dan Revisi */
+
+/* Menargetkan kolom ke-7 (kolom "Volume (Rev)") pada header tabel */
+.rab-table-header > div:nth-child(7),
+
+/* Menargetkan kolom ke-7 pada setiap baris data di dalam tabel */
+.rab-table-body .rab-table-row > div:nth-child(7) {
+    border-left: 2px solid #dcdcdc; /* Atur ketebalan dan warna garis di sini */
+    padding-left: 10px; /* Menambah sedikit jarak agar teks tidak menempel pada garis */
+}
